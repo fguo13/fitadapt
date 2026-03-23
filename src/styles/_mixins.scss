@@ -1,0 +1,79 @@
+@use 'variables' as *;
+
+// ─── TYPOGRAPHY ──────────────────────────────────────────────────────────────
+@mixin label-text {
+  font-size: $font-size-xs;
+  letter-spacing: $letter-spacing-widest;
+  color: $color-muted;
+  text-transform: uppercase;
+  font-family: $font-mono;
+}
+
+@mixin tag-text {
+  font-size: $font-size-xs;
+  letter-spacing: $letter-spacing-ultra;
+  color: $color-accent;
+  display: flex;
+  align-items: center;
+  gap: $space-xs;
+}
+
+@mixin heading-xl {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 900;
+  letter-spacing: $letter-spacing-tight;
+  line-height: 1;
+  margin: 0;
+  text-transform: uppercase;
+  font-family: $font-mono;
+}
+
+// ─── LAYOUT ──────────────────────────────────────────────────────────────────
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// ─── INPUT ───────────────────────────────────────────────────────────────────
+@mixin base-input {
+  background-color: $color-surface-alt;
+  border: $border;
+  border-radius: $border-radius;
+  padding: 14px $space-md;
+  color: $color-white;
+  font-size: $font-size-base;
+  font-family: $font-mono;
+  outline: none;
+  transition: border-color 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+
+  &::placeholder { color: #444; }
+  &:focus { border-color: $color-accent; }
+}
+
+// ─── BUTTON ──────────────────────────────────────────────────────────────────
+@mixin btn-base {
+  font-family: $font-mono;
+  font-size: $font-size-sm;
+  letter-spacing: $letter-spacing-wider;
+  cursor: pointer;
+  border-radius: $border-radius;
+  transition: $transition-base;
+  display: inline-flex;
+  align-items: center;
+
+  &:hover { opacity: 0.88; }
+}

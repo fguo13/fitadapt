@@ -1,0 +1,13 @@
+.logo {
+  font-size: $font-size-lg;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: $color-white;
+  font-family: $font-mono;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.accent {
+  color: $color-accent;
+}
