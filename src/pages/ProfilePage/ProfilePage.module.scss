@@ -1,0 +1,164 @@
+.page {
+  min-height: 100vh;
+  background-color: $color-bg;
+  @include flex-column;
+}
+
+// ─── HEADER ──────────────────────────────────────────────────────────────────
+.header {
+  @include flex-between;
+  padding: $space-lg $space-2xl;
+  border-bottom: $border;
+  flex-shrink: 0;
+}
+
+.screenIndicator {
+  font-size: $font-size-xs;
+  letter-spacing: $letter-spacing-widest;
+  color: $color-muted;
+}
+
+.screenNum {
+  color: $color-accent;
+  font-weight: 700;
+}
+
+// ─── CONTENT ─────────────────────────────────────────────────────────────────
+.content {
+  flex: 1;
+  padding: $space-3xl $space-2xl;
+  max-width: $content-max-width;
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: calc(#{$footer-height} + #{$space-3xl});
+}
+
+.tag {
+  @include tag-text;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: $color-accent;
+  animation: pulse 2s infinite;
+  flex-shrink: 0;
+}
+
+.heading {
+  @include heading-xl;
+  margin-bottom: $space-2xl;
+}
+
+.accent {
+  color: $color-accent;
+}
+
+// ─── FORM ────────────────────────────────────────────────────────────────────
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-xl;
+  margin-bottom: $space-xl;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fieldGroup {
+  @include flex-column;
+  gap: $space-sm;
+  margin-bottom: $space-xl;
+}
+
+.label {
+  @include label-text;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-sm;
+}
+
+// ─── FOOTER NAV ──────────────────────────────────────────────────────────────
+.footer {
+  @include flex-between;
+  padding: $space-lg $space-2xl;
+  border-top: $border;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: $color-bg;
+  height: $footer-height;
+  z-index: 10;
+}
+
+.btnBack {
+  @include btn-base;
+  padding: 14px $space-lg;
+  border: $border;
+  background-color: transparent;
+  color: $color-muted;
+  letter-spacing: $letter-spacing-wider;
+}
+
+.btnNext {
+  @include btn-base;
+  padding: 14px $space-xl;
+  background-color: $color-white;
+  border: none;
+  color: $color-black;
+  font-weight: 700;
+  letter-spacing: $letter-spacing-wider;
+  gap: $space-sm;
+}
+
+// ─── ANIMATIONS ──────────────────────────────────────────────────────────────
+@keyframes pulse {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+// ─── Added for 3-col stats grid + error + disabled ───────────────────────────
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-xl;
+  margin-bottom: $space-xl;
+
+  @media (max-width: 700px) { grid-template-columns: 1fr 1fr; }
+  @media (max-width: 480px) { grid-template-columns: 1fr; }
+}
+
+.error {
+  font-size: $font-size-sm;
+  color: #ff4d4d;
+  letter-spacing: $letter-spacing-normal;
+  margin-bottom: $space-md;
+}
+
+.btnNext:disabled,
+.btnBack:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

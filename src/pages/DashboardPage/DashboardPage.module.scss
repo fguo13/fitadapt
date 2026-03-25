@@ -1,0 +1,210 @@
+.page {
+  min-height: 100vh;
+  background-color: $color-bg;
+  @include flex-column;
+}
+
+// ─── HEADER ──────────────────────────────────────────────────────────────────
+.header {
+  @include flex-between;
+  padding: $space-lg $space-2xl;
+  border-bottom: $border;
+  flex-shrink: 0;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: $space-lg;
+}
+
+.goalBadge {
+  font-size: $font-size-xs;
+  letter-spacing: $letter-spacing-widest;
+  color: $color-accent;
+  border: 1px solid $color-accent;
+  padding: 6px 14px;
+  border-radius: $border-radius-sm;
+  text-transform: uppercase;
+}
+
+.btnLogout {
+  @include btn-base;
+  padding: 8px $space-md;
+  border: $border;
+  background: transparent;
+  color: $color-muted;
+  font-size: $font-size-xs;
+  letter-spacing: $letter-spacing-widest;
+}
+
+// ─── CONTENT ─────────────────────────────────────────────────────────────────
+.content {
+  flex: 1;
+  padding: $space-3xl $space-2xl;
+  max-width: $content-max-width;
+  width: 100%;
+}
+
+.greeting { margin-bottom: $space-2xl; }
+
+.tag {
+  @include tag-text;
+  margin-bottom: 16px;
+}
+
+.dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: $color-accent;
+  animation: pulse 2s infinite;
+}
+
+.heading { @include heading-xl; }
+.accent  { color: $color-accent; }
+
+// ─── STAT CARDS ──────────────────────────────────────────────────────────────
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $space-md;
+  margin-bottom: $space-2xl;
+
+  @media (max-width: 900px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 500px) { grid-template-columns: 1fr; }
+}
+
+// ─── CHARTS ──────────────────────────────────────────────────────────────────
+.chartsRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-md;
+  margin-bottom: $space-2xl;
+
+  @media (max-width: 700px) { grid-template-columns: 1fr; }
+}
+
+.chartCard {
+  background-color: $color-surface;
+  border: $border;
+  border-radius: $border-radius;
+  padding: $space-lg $space-xl;
+  @include flex-column;
+  gap: $space-lg;
+  min-height: 220px;
+}
+
+.chartLabel {
+  font-size: $font-size-xs;
+  letter-spacing: $letter-spacing-widest;
+  color: $color-muted;
+  text-transform: uppercase;
+}
+
+.skeleton {
+  flex: 1;
+  background: repeating-linear-gradient(
+    90deg,
+    $color-border 0px,
+    $color-border 1px,
+    transparent 1px,
+    transparent 24px
+  );
+  border-radius: $border-radius-sm;
+  opacity: 0.3;
+  animation: pulse 1.5s infinite;
+}
+
+.empty {
+  font-size: $font-size-sm;
+  color: $color-muted;
+  letter-spacing: $letter-spacing-normal;
+  margin: auto 0;
+}
+
+// Weekly bar chart
+.barChart {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  gap: $space-md;
+  height: 140px;
+}
+
+.barGroup {
+  @include flex-column;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+  height: 100%;
+  gap: $space-xs;
+}
+
+.bar {
+  width: 100%;
+  background-color: $color-accent;
+  border-radius: 2px 2px 0 0;
+  min-height: 4px;
+  transition: height 0.4s ease;
+}
+
+.barLabel {
+  font-size: 10px;
+  color: $color-muted;
+  letter-spacing: 0.1em;
+}
+
+// Muscle distribution
+.muscleList {
+  @include flex-column;
+  gap: $space-sm;
+  justify-content: center;
+  flex: 1;
+}
+
+.muscleRow {
+  display: grid;
+  grid-template-columns: 110px 1fr 28px;
+  align-items: center;
+  gap: $space-sm;
+}
+
+.muscleName {
+  font-size: $font-size-xs;
+  letter-spacing: $letter-spacing-wide;
+  color: $color-muted;
+  text-transform: uppercase;
+}
+
+.muscleTrack {
+  height: 6px;
+  background-color: $color-border;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.muscleFill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+.muscleCount {
+  font-size: $font-size-xs;
+  color: $color-white;
+  text-align: right;
+}
+
+// ─── CTA ─────────────────────────────────────────────────────────────────────
+.btnStart {
+  @include btn-base;
+  padding: 18px 48px;
+  background-color: $color-accent;
+  border: none;
+  color: $color-black;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: $letter-spacing-wider;
+}

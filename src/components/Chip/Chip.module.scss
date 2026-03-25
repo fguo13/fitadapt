@@ -1,0 +1,31 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.chip {
+  @include btn-base;
+
+  padding: $space-sm 18px;
+  border: $border;
+  border-radius: $border-radius-sm;
+  background-color: transparent;
+  color: $color-muted;
+  font-size: $font-size-xs;
+  letter-spacing: $letter-spacing-wide;
+
+  &:hover {
+    border-color: $color-muted-light;
+    color: $color-white;
+    opacity: 1;
+  }
+
+  &.active {
+    background-color: $color-accent;
+    border-color: $color-accent;
+    color: $color-black;
+    font-weight: 700;
+
+    &:hover {
+      opacity: 0.88;
+    }
+  }
+}

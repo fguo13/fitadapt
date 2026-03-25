@@ -1,0 +1,29 @@
+.card {
+  background-color: $color-surface;
+  border: $border;
+  border-radius: $border-radius;
+  padding: $space-lg $space-xl;
+  @include flex-column;
+  gap: $space-xs;
+}
+
+.label {
+  font-size: $font-size-xs;
+  letter-spacing: $letter-spacing-widest;
+  color: $color-muted;
+  text-transform: uppercase;
+}
+
+.value {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 900;
+  color: $color-white;
+  letter-spacing: $letter-spacing-tight;
+  line-height: 1;
+}
+
+.unit {
+  font-size: $font-size-base;
+  color: $color-muted;
+  font-weight: 400;
+}
