@@ -14,6 +14,11 @@ const mixinsPath    = path.resolve(__dirname, 'src/styles/_mixins.scss').replace
 
 export default defineConfig({
   plugins: [react()],
+  server: {
+    proxy: {
+      '/api': 'http://localhost:8080',
+    },
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

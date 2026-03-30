@@ -1,0 +1,170 @@
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-md;
+  padding: 0 $space-2xl;
+  height: $header-height;
+  border-bottom: $border;
+  background-color: $color-surface;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+// ─── SEARCH ──────────────────────────────────────────────────────────────────
+.searchWrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: $color-surface-alt;
+  border: $border;
+  border-radius: $border-radius;
+  padding: 0 14px;
+  height: 38px;
+  width: 300px;
+  transition: $transition-fast;
+
+  &:focus-within {
+    border-color: $color-accent;
+  }
+}
+
+.searchIcon {
+  display: flex;
+  align-items: center;
+  color: $color-muted;
+  flex-shrink: 0;
+}
+
+.searchInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  font-size: $font-size-sm;
+  color: $color-white;
+  min-width: 0;
+
+  &::placeholder {
+    color: $color-muted;
+  }
+}
+
+// ─── RIGHT ────────────────────────────────────────────────────────────────────
+.right {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+}
+
+// ─── PROFILE WIDGET ──────────────────────────────────────────────────────────
+.profileWrap {
+  position: relative;
+}
+
+.profileBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px 5px 5px;
+  border-radius: $border-radius;
+  background: $color-surface-alt;
+  border: $border;
+  cursor: pointer;
+  transition: $transition-fast;
+
+  &:hover {
+    border-color: $color-accent;
+  }
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: $color-accent;
+  color: var(--color-on-accent);
+  font-size: $font-size-xs;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
+
+.profileName {
+  font-size: $font-size-sm;
+  font-weight: 600;
+  color: $color-white;
+}
+
+.chevron {
+  display: flex;
+  align-items: center;
+  color: $color-muted;
+}
+
+// ─── DROPDOWN ────────────────────────────────────────────────────────────────
+.dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  width: 200px;
+  background-color: $color-surface;
+  border: $border;
+  border-radius: $border-radius;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  z-index: 100;
+  animation: fadeIn 0.12s ease forwards;
+}
+
+.dropdownHeader {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dropdownName {
+  font-size: $font-size-sm;
+  font-weight: 600;
+  color: $color-white;
+}
+
+.dropdownEmail {
+  font-size: $font-size-xs;
+  color: $color-muted;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dropdownDivider {
+  height: 1px;
+  background-color: $color-border;
+}
+
+.dropdownItem {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  text-align: left;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  color: $color-white;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: $transition-fast;
+
+  &:hover {
+    background-color: $color-surface-alt;
+  }
+}
+
+.dropdownItemDanger {
+  color: #e05555;
+}

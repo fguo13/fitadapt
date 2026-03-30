@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Logo, FormField } from '../../components';
 import styles from './LoginPage.module.scss';
 
-export default function LoginPage({ onLogin }) {
+export default function LoginPage({ onLogin, onRegister }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -43,13 +43,13 @@ export default function LoginPage({ onLogin }) {
           />
         </div>
 
-        <button className={styles.btnSignIn} onClick={onLogin} type="button">
+        <button className={styles.btnSignIn} onClick={() => onLogin(email, password)} type="button">
           SIGN IN →
         </button>
 
         <p className={styles.footer}>
           No account?{' '}
-          <span className={styles.link} onClick={onLogin}>
+          <span className={styles.link} onClick={onRegister}>
             CREATE ONE FREE
           </span>
         </p>

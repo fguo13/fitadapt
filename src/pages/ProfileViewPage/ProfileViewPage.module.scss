@@ -1,0 +1,261 @@
+.page {
+  padding: $space-2xl;
+  max-width: $content-max-width;
+}
+
+.loading,
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $space-lg;
+  padding-top: $space-3xl;
+}
+
+.emptyText {
+  font-size: $font-size-base;
+  color: $color-muted;
+}
+
+// ─── HEADER ──────────────────────────────────────────────────────────────────
+.pageHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: $space-2xl;
+  gap: $space-lg;
+}
+
+.tag {
+  @include tag-text;
+  margin-bottom: 12px;
+}
+
+.dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: $color-accent;
+  animation: pulse 2s infinite;
+  flex-shrink: 0;
+}
+
+.heading {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: $color-white;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.email {
+  font-size: $font-size-sm;
+  color: $color-muted;
+  letter-spacing: $letter-spacing-normal;
+}
+
+.btnEdit {
+  @include btn-base;
+  padding: 10px 18px;
+  background-color: $color-accent;
+  border: none;
+  color: var(--color-on-accent);
+  font-size: $font-size-xs;
+  font-weight: 700;
+  letter-spacing: $letter-spacing-wider;
+  flex-shrink: 0;
+}
+
+// ─── STATS ROW ───────────────────────────────────────────────────────────────
+.statsRow {
+  display: flex;
+  gap: $space-md;
+  margin-bottom: $space-2xl;
+  flex-wrap: wrap;
+}
+
+.statCard {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: $space-lg $space-xl;
+  background-color: $color-surface;
+  border: $border;
+  border-radius: $border-radius;
+  min-width: 100px;
+}
+
+.statValue {
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 800;
+  color: $color-accent;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.statUnit {
+  font-size: 14px;
+  font-weight: 500;
+  color: $color-muted;
+  margin-left: 2px;
+}
+
+.statLabel {
+  @include label-text;
+}
+
+// ─── CARD GRID ───────────────────────────────────────────────────────────────
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-md;
+  margin-bottom: $space-2xl;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+  padding: $space-lg;
+  background-color: $color-surface;
+  border: $border;
+  border-radius: $border-radius;
+}
+
+.cardWide {
+  grid-column: 1 / -1;
+}
+
+.cardLabel {
+  @include label-text;
+}
+
+.goalBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  background-color: $color-surface-alt;
+  border-radius: 20px;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  color: $color-accent;
+  letter-spacing: $letter-spacing-normal;
+  width: fit-content;
+}
+
+.emptyVal {
+  font-size: $font-size-base;
+  color: $color-muted;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-xs;
+}
+
+.chip {
+  padding: 5px 12px;
+  background-color: $color-surface-alt;
+  border: $border;
+  border-radius: 20px;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  color: $color-white;
+  letter-spacing: $letter-spacing-normal;
+}
+
+.injuryText {
+  font-size: $font-size-base;
+  color: $color-muted;
+  line-height: 1.6;
+}
+
+// ─── SKILLS ──────────────────────────────────────────────────────────────────
+.skillsSection {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+}
+
+.sectionLabel {
+  @include label-text;
+}
+
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: $space-md;
+}
+
+.skillCard {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+  padding: $space-md;
+  background-color: $color-surface;
+  border: $border;
+  border-radius: $border-radius;
+}
+
+.skillHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.skillMuscle {
+  font-size: $font-size-sm;
+  font-weight: 700;
+  color: $color-white;
+}
+
+.skillLevel {
+  font-size: $font-size-xs;
+  color: $color-muted;
+  text-transform: uppercase;
+  letter-spacing: $letter-spacing-wide;
+}
+
+.skillBar {
+  height: 4px;
+  background-color: $color-surface-alt;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.skillFill {
+  height: 100%;
+  background-color: $color-accent;
+  border-radius: 2px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skillFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.skillStatus {
+  font-size: $font-size-xs;
+  font-weight: 600;
+  letter-spacing: $letter-spacing-wide;
+  text-transform: uppercase;
+}
+
+.statusLEARNING   { color: $color-muted; }
+.statusPROGRESSING { color: $color-accent-dim; }
+.statusMASTERED    { color: $color-accent; }
+
+.skillPct {
+  font-size: $font-size-xs;
+  color: $color-muted;
+  font-weight: 600;
+}

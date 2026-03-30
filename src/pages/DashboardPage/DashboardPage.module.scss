@@ -1,0 +1,310 @@
+.page {
+  padding: $space-2xl;
+  max-width: $content-max-width;
+}
+
+// ─── GREETING ────────────────────────────────────────────────────────────────
+.greeting {
+  margin-bottom: $space-2xl;
+}
+
+.tag {
+  @include tag-text;
+  margin-bottom: 12px;
+}
+
+.dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: $color-accent;
+  animation: pulse 2s infinite;
+  flex-shrink: 0;
+}
+
+.heading {
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+
+.accent {
+  color: $color-accent;
+}
+
+.sub {
+  font-size: $font-size-base;
+  color: $color-muted;
+  line-height: 1.5;
+}
+
+// ─── STATS ───────────────────────────────────────────────────────────────────
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $space-md;
+  margin-bottom: $space-2xl;
+
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.statCard {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: $space-lg;
+  background-color: $color-surface;
+  border: $border;
+  border-radius: $border-radius;
+}
+
+.statValue {
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 800;
+  color: $color-accent;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: $font-size-xs;
+  color: $color-muted;
+  font-weight: 500;
+  letter-spacing: $letter-spacing-normal;
+}
+
+// ─── FOCUS CARD ──────────────────────────────────────────────────────────────
+.focusCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-lg;
+  padding: $space-lg $space-xl;
+  background-color: $color-surface;
+  border: $border;
+  border-left: 3px solid $color-accent;
+  border-radius: $border-radius;
+  margin-bottom: $space-2xl;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.focusLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.focusLabel {
+  font-size: $font-size-xs;
+  letter-spacing: $letter-spacing-widest;
+  color: $color-accent;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.focusHint {
+  font-size: $font-size-sm;
+  color: $color-muted;
+  max-width: 380px;
+  line-height: 1.5;
+}
+
+.focusRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: $space-xs;
+  flex-shrink: 0;
+}
+
+// ─── CTA ─────────────────────────────────────────────────────────────────────
+.error {
+  font-size: $font-size-xs;
+  color: #e05555;
+  font-weight: 500;
+}
+
+.btnGenerate {
+  @include btn-base;
+  padding: 11px 22px;
+  background-color: $color-accent;
+  border: none;
+  color: var(--color-on-accent);
+  font-size: $font-size-sm;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border-radius: $border-radius;
+  white-space: nowrap;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.btnGenerateStandalone {
+  @include btn-base;
+  padding: 14px 28px;
+  background-color: $color-accent;
+  border: none;
+  color: var(--color-on-accent);
+  font-size: $font-size-base;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  margin-bottom: $space-2xl;
+  border-radius: $border-radius;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// ─── MUSCLE DISTRIBUTION ─────────────────────────────────────────────────────
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+  margin-bottom: $space-2xl;
+}
+
+.sectionLabel {
+  @include label-text;
+}
+
+.muscleList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.muscleRow {
+  display: grid;
+  grid-template-columns: 90px 1fr 36px;
+  align-items: center;
+  gap: $space-md;
+}
+
+.muscleName {
+  font-size: $font-size-sm;
+  color: $color-muted;
+  font-weight: 500;
+}
+
+.muscleBar {
+  height: 5px;
+  background-color: $color-surface-alt;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.muscleFill {
+  height: 100%;
+  background-color: $color-accent;
+  border-radius: 3px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.musclePct {
+  font-size: $font-size-xs;
+  color: $color-muted;
+  font-weight: 600;
+  text-align: right;
+}
+
+// ─── RECENT WORKOUTS ─────────────────────────────────────────────────────────
+.workoutList {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.workoutRow {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+  padding: 12px $space-md;
+  background-color: $color-surface;
+  border: $border;
+  border-radius: $border-radius;
+}
+
+.workoutDate {
+  font-size: $font-size-sm;
+  font-weight: 600;
+  color: $color-white;
+  width: 70px;
+}
+
+.workoutExCount {
+  font-size: $font-size-sm;
+  color: $color-muted;
+  flex: 1;
+}
+
+.workoutStatus {
+  font-size: $font-size-xs;
+  font-weight: 700;
+  letter-spacing: $letter-spacing-wide;
+  text-transform: uppercase;
+}
+
+.statusPENDING    { color: $color-muted; }
+.statusIN_PROGRESS { color: $color-accent-dim; }
+.statusCOMPLETED  { color: $color-accent; }
+
+// ─── EMPTY STATE / HOW IT WORKS ───────────────────────────────────────────────
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+  margin-top: $space-xl;
+}
+
+.howGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-md;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.howCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: $space-lg;
+  background-color: $color-surface;
+  border: $border;
+  border-radius: $border-radius;
+}
+
+.howNum {
+  font-size: $font-size-xs;
+  font-weight: 800;
+  color: $color-accent;
+  letter-spacing: $letter-spacing-wide;
+}
+
+.howTitle {
+  font-size: $font-size-base;
+  font-weight: 700;
+  color: $color-white;
+}
+
+.howBody {
+  font-size: $font-size-sm;
+  color: $color-muted;
+  line-height: 1.6;
+}

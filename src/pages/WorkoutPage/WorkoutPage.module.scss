@@ -1,0 +1,216 @@
+.page {
+  min-height: 100vh;
+  background-color: $color-bg;
+  @include flex-column;
+}
+
+// ─── HEADER ──────────────────────────────────────────────────────────────────
+.header {
+  @include flex-between;
+  padding: $space-lg $space-2xl;
+  border-bottom: $border;
+  flex-shrink: 0;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+}
+
+.deloadBadge {
+  font-size: $font-size-xs;
+  letter-spacing: $letter-spacing-wider;
+  color: $color-black;
+  background-color: $color-accent;
+  padding: 4px $space-sm;
+  border-radius: $border-radius-sm;
+  font-family: $font-mono;
+  font-weight: 700;
+}
+
+.exerciseCount {
+  font-size: $font-size-xs;
+  letter-spacing: $letter-spacing-widest;
+  color: $color-muted;
+  font-family: $font-mono;
+}
+
+// ─── CONTENT ─────────────────────────────────────────────────────────────────
+.content {
+  flex: 1;
+  padding: $space-3xl $space-2xl;
+  max-width: $content-max-width;
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: calc(#{$footer-height} + #{$space-3xl});
+}
+
+.tag {
+  @include tag-text;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: $color-accent;
+  animation: pulse 2s infinite;
+  flex-shrink: 0;
+}
+
+.heading {
+  @include heading-xl;
+  margin-bottom: $space-2xl;
+}
+
+.accent {
+  color: $color-accent;
+}
+
+// ─── EXERCISE LIST ────────────────────────────────────────────────────────────
+.exerciseList {
+  @include flex-column;
+  gap: $space-lg;
+}
+
+.exerciseCard {
+  padding: $space-lg;
+  background-color: $color-surface;
+  border: $border;
+  border-radius: $border-radius;
+}
+
+.exerciseHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-md;
+  margin-bottom: $space-md;
+}
+
+.exerciseIndex {
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 900;
+  font-family: $font-mono;
+  color: $color-accent;
+  letter-spacing: $letter-spacing-tight;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.exerciseMeta {
+  @include flex-column;
+  gap: 4px;
+}
+
+.exerciseName {
+  font-size: $font-size-lg;
+  font-weight: 700;
+  font-family: $font-mono;
+  letter-spacing: $letter-spacing-tight;
+  text-transform: uppercase;
+}
+
+.exerciseDetail {
+  font-size: $font-size-xs;
+  letter-spacing: $letter-spacing-wider;
+  color: $color-muted;
+  font-family: $font-mono;
+  text-transform: uppercase;
+}
+
+.prescribed {
+  @include flex-between;
+  padding: $space-sm $space-md;
+  background-color: $color-surface-alt;
+  border-radius: $border-radius-sm;
+  margin-bottom: $space-md;
+}
+
+.prescribedLabel {
+  @include label-text;
+}
+
+.prescribedValue {
+  font-size: $font-size-sm;
+  font-family: $font-mono;
+  color: $color-accent;
+  letter-spacing: $letter-spacing-wide;
+  font-weight: 700;
+}
+
+// ─── LOG INPUTS ──────────────────────────────────────────────────────────────
+.logRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-md;
+}
+
+.logField {
+  @include flex-column;
+  gap: 6px;
+}
+
+.logLabel {
+  @include label-text;
+}
+
+.logInput {
+  @include base-input;
+  text-align: center;
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    opacity: 0.4;
+  }
+}
+
+// ─── FOOTER NAV ──────────────────────────────────────────────────────────────
+.footer {
+  @include flex-between;
+  padding: $space-lg $space-2xl;
+  border-top: $border;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: $color-bg;
+  height: $footer-height;
+  z-index: 10;
+}
+
+.btnBack {
+  @include btn-base;
+  padding: 14px $space-lg;
+  border: $border;
+  background-color: transparent;
+  color: $color-muted;
+  letter-spacing: $letter-spacing-wider;
+}
+
+.btnComplete {
+  @include btn-base;
+  padding: 14px $space-xl;
+  background-color: $color-accent;
+  border: none;
+  color: $color-black;
+  font-weight: 900;
+  letter-spacing: $letter-spacing-wider;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// ─── ANIMATIONS ──────────────────────────────────────────────────────────────
+@keyframes pulse {
+  0%   { opacity: 1; transform: scale(1); }
+  50%  { opacity: 0.5; transform: scale(1.2); }
+  100% { opacity: 1; transform: scale(1); }
+}

@@ -1,0 +1,137 @@
+.page {
+  padding: $space-2xl;
+  max-width: $content-max-width;
+}
+
+.header {
+  margin-bottom: $space-2xl;
+}
+
+.tag {
+  @include tag-text;
+  margin-bottom: 12px;
+}
+
+.heading {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.sub {
+  font-size: $font-size-base;
+  color: $color-muted;
+}
+
+// ─── SECTION ─────────────────────────────────────────────────────────────────
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+}
+
+.sectionLabel {
+  @include label-text;
+}
+
+// ─── CARD ─────────────────────────────────────────────────────────────────────
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-lg;
+  padding: $space-lg;
+  background-color: $color-surface;
+  border: $border;
+  border-radius: $border-radius;
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cardTitle {
+  font-size: $font-size-base;
+  font-weight: 600;
+  color: $color-white;
+}
+
+.cardSub {
+  font-size: $font-size-sm;
+  color: $color-muted;
+}
+
+// ─── MODE BUTTON ─────────────────────────────────────────────────────────────
+.modeBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: $border-radius;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  color: $color-muted;
+  background: transparent;
+  border: $border;
+  transition: $transition-fast;
+  min-width: 90px;
+  justify-content: center;
+
+  &:hover {
+    color: $color-white;
+    border-color: $color-white;
+  }
+}
+
+.modeBtnActive {
+  color: $color-accent;
+  border-color: $color-accent;
+}
+
+.modePip {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+// ─── SWATCH GRID ──────────────────────────────────────────────────────────────
+.swatchGrid {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--swatch-color);
+  border: 2px solid transparent;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    transform: scale(1.15);
+  }
+}
+
+.swatchActive {
+  border-color: $color-white;
+  transform: scale(1.1);
+}
+
+.swatchCheck {
+  font-size: 12px;
+  font-weight: 800;
+  color: #0d0d0d;
+  line-height: 1;
+}

@@ -1,10 +1,45 @@
 @use 'variables' as *;
 
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.4; }
+// ─── THEME TOKENS ────────────────────────────────────────────────────────────
+:root,
+[data-theme="dark"] {
+  --color-bg:           #0d0d0d;
+  --color-surface:      #141414;
+  --color-surface-alt:  #1a1a1a;
+  --color-border:       #272727;
+  --color-accent:       #9fd45e;
+  --color-accent-dim:   #78aa42;
+  --color-white:        #f0f0f0;
+  --color-muted:        #808080;
+  --color-muted-light:  #4a4a4a;
+  --color-on-accent:    #0a0a0a;
 }
 
+[data-theme="light"] {
+  --color-bg:           #f5f4f0;
+  --color-surface:      #ffffff;
+  --color-surface-alt:  #eeede9;
+  --color-border:       #dddbd4;
+  --color-accent:       #4e8f1e;
+  --color-accent-dim:   #3e7216;
+  --color-white:        #111111;
+  --color-muted:        #6b6b6b;
+  --color-muted-light:  #b0aea8;
+  --color-on-accent:    #ffffff;
+}
+
+// ─── ANIMATIONS ──────────────────────────────────────────────────────────────
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(1.15); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+// ─── RESET ───────────────────────────────────────────────────────────────────
 *,
 *::before,
 *::after {
@@ -18,11 +53,12 @@ html, body {
 }
 
 body {
-  background-color: $color-bg;
-  color: $color-white;
-  font-family: $font-mono;
+  background-color: var(--color-bg);
+  color: var(--color-white);
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 #root {
@@ -30,16 +66,16 @@ body {
 }
 
 button {
-  font-family: $font-mono;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   cursor: pointer;
 
   &:focus-visible {
-    outline: 2px solid $color-accent;
+    outline: 2px solid var(--color-accent);
     outline-offset: 2px;
   }
 }
 
-input {
-  font-family: $font-mono;
+input, textarea {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   &:focus-visible { outline: none; }
 }

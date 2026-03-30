@@ -1,0 +1,120 @@
+.page {
+  padding: $space-2xl;
+  max-width: $content-max-width;
+}
+
+.header {
+  margin-bottom: $space-2xl;
+}
+
+.tag {
+  @include tag-text;
+  margin-bottom: 12px;
+}
+
+.heading {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.sub {
+  font-size: $font-size-base;
+  color: $color-muted;
+}
+
+// ─── LIST ─────────────────────────────────────────────────────────────────────
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.empty {
+  font-size: $font-size-base;
+  color: $color-muted;
+  padding: $space-2xl 0;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-md;
+  padding: 14px $space-md;
+  background-color: $color-surface;
+  border: $border;
+  border-radius: $border-radius;
+  transition: $transition-fast;
+
+  &:hover {
+    background-color: $color-surface-alt;
+  }
+}
+
+.rowLeft {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+  min-width: 0;
+}
+
+.date {
+  font-size: $font-size-sm;
+  font-weight: 600;
+  color: $color-white;
+  white-space: nowrap;
+}
+
+.exercises {
+  font-size: $font-size-sm;
+  color: $color-muted;
+}
+
+.status {
+  font-size: $font-size-xs;
+  font-weight: 700;
+  letter-spacing: $letter-spacing-wide;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.statusPENDING    { color: $color-muted; }
+.statusIN_PROGRESS { color: $color-accent-dim; }
+.statusCOMPLETED  { color: $color-accent; }
+
+// ─── PAGINATION ───────────────────────────────────────────────────────────────
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+  margin-top: $space-lg;
+}
+
+.pageBtn {
+  padding: 8px 16px;
+  border-radius: $border-radius;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  color: $color-white;
+  background: transparent;
+  border: $border;
+  transition: $transition-fast;
+
+  &:hover:not(:disabled) {
+    border-color: $color-accent;
+    color: $color-accent;
+  }
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+}
+
+.pageInfo {
+  font-size: $font-size-sm;
+  color: $color-muted;
+}

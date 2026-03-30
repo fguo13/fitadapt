@@ -9,7 +9,7 @@ const GENDERS = ['Male', 'Female', 'Other'];
 const TOTAL_SCREENS = 8;
 const CURRENT_SCREEN = 5;
 
-export default function ProfilePage({ onBack }) {
+export default function ProfilePage({ onBack, onNext }) {
   const [name, setName] = useState('John Doe');
   const [age, setAge] = useState('24');
   const [weight, setWeight] = useState('');
@@ -153,7 +153,11 @@ export default function ProfilePage({ onBack }) {
         <button className={styles.btnBack} onClick={onBack} type="button">
           ← BACK
         </button>
-        <button className={styles.btnNext} type="button">
+        <button
+            className={styles.btnNext}
+            onClick={() => onNext && onNext({ name, age, weight, height, gender, goal, equipment, injury })}
+            type="button"
+          >
           NEXT →
         </button>
       </footer>

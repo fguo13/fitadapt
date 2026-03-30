@@ -1,4 +1,7 @@
 .logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: $font-size-lg;
   font-weight: 900;
   letter-spacing: 0.08em;
@@ -6,6 +9,13 @@
   font-family: $font-mono;
   text-transform: uppercase;
   user-select: none;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  color: $color-accent;
+  flex-shrink: 0;
 }
 
 .accent {

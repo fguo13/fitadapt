@@ -1,0 +1,297 @@
+.page {
+  padding: $space-2xl;
+  max-width: $content-max-width;
+  padding-bottom: 100px;
+}
+
+.loading {
+  color: $color-muted;
+  font-size: $font-size-base;
+  padding-top: $space-2xl;
+}
+
+// ─── HEADER ──────────────────────────────────────────────────────────────────
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $space-lg;
+  margin-bottom: $space-2xl;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+
+.tag {
+  display: block;
+  font-size: $font-size-xs;
+  letter-spacing: $letter-spacing-ultra;
+  color: $color-accent;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.heading {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: $color-white;
+  line-height: 1.1;
+}
+
+.headerActions {
+  display: flex;
+  gap: $space-xs;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+// ─── SECTIONS ────────────────────────────────────────────────────────────────
+.sections {
+  display: flex;
+  flex-direction: column;
+}
+
+.section {
+  padding: $space-xl 0;
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+}
+
+.sectionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: $color-white;
+  letter-spacing: -0.01em;
+}
+
+.sectionSub {
+  font-size: $font-size-sm;
+  color: $color-muted;
+  line-height: 1.5;
+}
+
+.divider {
+  height: 1px;
+  background-color: $color-border;
+}
+
+.error {
+  font-size: $font-size-sm;
+  color: #e05555;
+  font-weight: 500;
+  margin-bottom: $space-md;
+}
+
+// ─── FIELDS ──────────────────────────────────────────────────────────────────
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fieldLabel {
+  font-size: $font-size-xs;
+  letter-spacing: $letter-spacing-widest;
+  color: $color-muted;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.fieldsRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-md;
+
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.numericWrap {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background-color: $color-surface-alt;
+  border: $border;
+  border-radius: $border-radius;
+  overflow: hidden;
+  transition: $transition-fast;
+
+  &:focus-within {
+    border-color: $color-accent;
+  }
+}
+
+.numericInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 12px 14px;
+  font-size: $font-size-base;
+  font-weight: 600;
+  color: $color-white;
+  width: 0; // let flex handle width
+  min-width: 0;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  -moz-appearance: textfield;
+}
+
+.unit {
+  padding: 0 12px;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  color: $color-muted;
+  letter-spacing: $letter-spacing-normal;
+  border-left: $border;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+// ─── PILL SELECTORS ──────────────────────────────────────────────────────────
+.pillRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pill {
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  color: $color-muted;
+  background: transparent;
+  border: $border;
+  transition: $transition-fast;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-white;
+    border-color: $color-white;
+  }
+}
+
+.pillActive {
+  background-color: $color-accent;
+  border-color: $color-accent;
+  color: var(--color-on-accent);
+  font-weight: 700;
+}
+
+// ─── EQUIPMENT GRID ──────────────────────────────────────────────────────────
+.equipGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 8px;
+}
+
+.equipChip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-radius: $border-radius;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  color: $color-muted;
+  background: $color-surface;
+  border: $border;
+  transition: $transition-fast;
+  cursor: pointer;
+  text-align: left;
+
+  &:hover {
+    color: $color-white;
+    border-color: $color-white;
+  }
+}
+
+.equipChipActive {
+  background-color: $color-surface-alt;
+  border-color: $color-accent;
+  color: $color-white;
+}
+
+.check {
+  font-size: 10px;
+  font-weight: 800;
+  color: $color-accent;
+}
+
+// ─── TEXTAREA ────────────────────────────────────────────────────────────────
+.textarea {
+  @include base-input;
+  resize: vertical;
+  min-height: 80px;
+  line-height: 1.5;
+
+  &::placeholder { color: $color-muted; }
+}
+
+// ─── BUTTONS ─────────────────────────────────────────────────────────────────
+.btnCancel {
+  padding: 10px 18px;
+  border-radius: $border-radius;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  color: $color-muted;
+  background: transparent;
+  border: $border;
+  transition: $transition-fast;
+
+  &:hover {
+    color: $color-white;
+    border-color: $color-white;
+  }
+}
+
+.btnSave {
+  @include btn-base;
+  padding: 10px 22px;
+  background-color: $color-accent;
+  border: none;
+  color: var(--color-on-accent);
+  font-size: $font-size-sm;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// ─── SAVE BAR ────────────────────────────────────────────────────────────────
+.saveBar {
+  position: fixed;
+  bottom: 0;
+  left: $sidebar-width;
+  right: 0;
+  padding: 16px $space-2xl;
+  background-color: $color-surface;
+  border-top: $border;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: $space-xs;
+  z-index: 10;
+}
+
+.saveBarActions {
+  display: flex;
+  gap: $space-xs;
+}
