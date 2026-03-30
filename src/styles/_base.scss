@@ -79,3 +79,79 @@ input, textarea {
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   &:focus-visible { outline: none; }
 }
+
+// ─── ACCESSIBILITY OVERRIDES ─────────────────────────────────────────────────
+
+// Font size — CSS custom properties so every var(--font-size-*) scales live
+:root {
+  --font-size-xs:   11px;
+  --font-size-sm:   12px;
+  --font-size-base: 14px;
+  --font-size-lg:   20px;
+}
+[data-font-size="lg"] {
+  --font-size-xs:   13px;
+  --font-size-sm:   14px;
+  --font-size-base: 16px;
+  --font-size-lg:   22px;
+}
+[data-font-size="xl"] {
+  --font-size-xs:   15px;
+  --font-size-sm:   16px;
+  --font-size-base: 18px;
+  --font-size-lg:   26px;
+}
+[data-font-size="xxl"] {
+  --font-size-xs:   17px;
+  --font-size-sm:   18px;
+  --font-size-base: 21px;
+  --font-size-lg:   30px;
+}
+
+[data-dyslexia-font="true"] body,
+[data-dyslexia-font="true"] button,
+[data-dyslexia-font="true"] input,
+[data-dyslexia-font="true"] textarea,
+[data-dyslexia-font="true"] select {
+  font-family: 'OpenDyslexic', 'Open-Dyslexic', sans-serif !important;
+  letter-spacing: 0.02em;
+  word-spacing: 0.1em;
+}
+
+// Bold text
+[data-bold-text="true"] body {
+  font-weight: 600;
+}
+
+// Letter spacing
+[data-letter-spacing="true"] body {
+  letter-spacing: 0.06em;
+}
+
+// Line height
+[data-line-height="relaxed"] body { line-height: 1.8; }
+[data-line-height="loose"]   body { line-height: 2.4; }
+
+// Word spacing
+[data-word-spacing="wide"]  body { word-spacing: 0.12em; }
+[data-word-spacing="wider"] body { word-spacing: 0.24em; }
+
+// High contrast — strengthen borders and muted text
+[data-high-contrast="true"] {
+  --color-border:      #555555;
+  --color-muted:       #c8c8c8;
+  --color-muted-light: #888888;
+}
+[data-theme="light"][data-high-contrast="true"] {
+  --color-border:      #888888;
+  --color-muted:       #1a1a1a;
+  --color-muted-light: #555555;
+}
+
+// Large tap targets — minimum 44×44px
+[data-large-targets="true"] button,
+[data-large-targets="true"] [role="button"],
+[data-large-targets="true"] a {
+  min-height: 44px;
+  min-width:  44px;
+}

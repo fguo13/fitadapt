@@ -13,10 +13,10 @@ $color-black:        #000000;
 // ─── TYPOGRAPHY ──────────────────────────────────────────────────────────────
 $font-mono: 'Plus Jakarta Sans', system-ui, sans-serif;
 
-$font-size-xs:   11px;
-$font-size-sm:   12px;
-$font-size-base: 14px;
-$font-size-lg:   20px;
+$font-size-xs:   var(--font-size-xs);
+$font-size-sm:   var(--font-size-sm);
+$font-size-base: var(--font-size-base);
+$font-size-lg:   var(--font-size-lg);
 
 $letter-spacing-tight:   -0.01em;
 $letter-spacing-normal:   0.03em;

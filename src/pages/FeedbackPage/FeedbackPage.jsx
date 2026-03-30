@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Logo, ProgressBar } from '../../components';
+import { getTimeRecoveryNote } from '../../utils/timeContext';
 import styles from './FeedbackPage.module.scss';
 
-export default function FeedbackPage({ onSubmit, onSkip }) {
+export default function FeedbackPage({ onSubmit, onSkip, insight }) {
   const [difficulty, setDifficulty] = useState(5);
   const [fatigue, setFatigue] = useState(5);
   const [notes, setNotes] = useState('');
@@ -17,6 +18,41 @@ export default function FeedbackPage({ onSubmit, onSkip }) {
     });
     setLoading(false);
   };
+
+  if (insight) {
+    return (
+      <div className={styles.page}>
+        <header className={styles.header}>
+          <Logo />
+        </header>
+        <main className={styles.content}>
+          <div className={styles.tag}>
+            <span className={styles.dot} />
+            ALGORITHM UPDATED
+          </div>
+          <h1 className={styles.heading}>
+            MODEL<br /><span className={styles.accent}>UPDATED.</span>
+          </h1>
+          <div className={styles.insightCard}>
+            <span className={styles.insightLabel}>COACHING INSIGHT</span>
+            <p className={styles.insightText}>{insight}</p>
+          </div>
+          <p className={styles.insightMeta}>
+            Your skill model has been updated from today's session. Your next workout will be automatically calibrated to reflect your performance.
+          </p>
+          {getTimeRecoveryNote() && (
+            <p className={styles.timeNote}>{getTimeRecoveryNote()}</p>
+          )}
+        </main>
+        <footer className={styles.footer}>
+          <div />
+          <button className={styles.btnSubmit} onClick={onSkip} type="button">
+            TO DASHBOARD →
+          </button>
+        </footer>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.page}>

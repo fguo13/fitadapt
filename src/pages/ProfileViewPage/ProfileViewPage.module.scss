@@ -188,74 +188,45 @@
   @include label-text;
 }
 
-.skillsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: $space-md;
-}
-
-.skillCard {
+.skillsList {
   display: flex;
   flex-direction: column;
-  gap: $space-xs;
-  padding: $space-md;
-  background-color: $color-surface;
-  border: $border;
-  border-radius: $border-radius;
+  gap: 10px;
 }
 
-.skillHeader {
-  display: flex;
-  justify-content: space-between;
+.skillRow {
+  display: grid;
+  grid-template-columns: 100px 1fr 40px;
   align-items: center;
+  gap: $space-md;
 }
 
 .skillMuscle {
   font-size: $font-size-sm;
-  font-weight: 700;
-  color: $color-white;
-}
-
-.skillLevel {
-  font-size: $font-size-xs;
+  font-weight: 500;
   color: $color-muted;
-  text-transform: uppercase;
-  letter-spacing: $letter-spacing-wide;
 }
 
 .skillBar {
-  height: 4px;
+  height: 5px;
   background-color: $color-surface-alt;
-  border-radius: 2px;
+  border-radius: 3px;
   overflow: hidden;
 }
 
 .skillFill {
   height: 100%;
-  background-color: $color-accent;
-  border-radius: 2px;
+  border-radius: 3px;
   transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.skillFooter {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.skillStatus {
-  font-size: $font-size-xs;
-  font-weight: 600;
-  letter-spacing: $letter-spacing-wide;
-  text-transform: uppercase;
-}
-
-.statusLEARNING   { color: $color-muted; }
-.statusPROGRESSING { color: $color-accent-dim; }
-.statusMASTERED    { color: $color-accent; }
+.fillBEGINNER     { background-color: $color-muted-light; }
+.fillINTERMEDIATE { background-color: $color-accent-dim; }
+.fillADVANCED     { background-color: $color-accent; }
 
 .skillPct {
   font-size: $font-size-xs;
   color: $color-muted;
   font-weight: 600;
+  text-align: right;
 }

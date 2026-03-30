@@ -76,6 +76,45 @@
   .navIcon { color: $color-accent; }
 }
 
+// Behavioural highlight — most-visited page (not dashboard, not current)
+// Only the dot changes; text/icon colours are intentionally left at default
+// so this item cannot be mistaken for the active selection.
+.navItemFrequent {}
+
+.frequentDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: $color-accent;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+// Beginner onboarding tip — replaces recent workouts section for new users
+.beginnerTip {
+  margin: 0 12px 12px;
+  padding: $space-sm $space-md;
+  border: $border;
+  border-left: 2px solid $color-accent;
+  border-radius: $border-radius;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.beginnerTipLabel {
+  font-size: $font-size-xs;
+  letter-spacing: $letter-spacing-widest;
+  color: $color-accent;
+  font-weight: 600;
+}
+
+.beginnerTipText {
+  font-size: $font-size-xs;
+  color: $color-muted;
+  line-height: 1.6;
+}
+
 .navIcon {
   display: flex;
   align-items: center;

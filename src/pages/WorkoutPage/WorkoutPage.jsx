@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Logo, ProgressBar } from '../../components';
+import { getTimeTag } from '../../utils/timeContext';
 import styles from './WorkoutPage.module.scss';
 
 const MUSCLE_LABEL = {
@@ -7,6 +8,20 @@ const MUSCLE_LABEL = {
   BICEPS: 'Biceps', TRICEPS: 'Triceps', LEGS: 'Legs',
   CORE: 'Core', GLUTES: 'Glutes',
 };
+
+const FORM_CUES = {
+  INTERMEDIATE: 'FORM CHECK — Prioritise controlled movement over speed. Quality reps build the model.',
+  ADVANCED: 'FORM CHECK — Technique breakdown is common at advanced intensity. Reduce weight before form fails.',
+};
+
+function sessionMotivation(exercises) {
+  const advanced = exercises.filter((e) => e.difficulty === 'ADVANCED').length;
+  const intermediate = exercises.filter((e) => e.difficulty === 'INTERMEDIATE').length;
+  if (advanced >= 3) return 'Advanced session — your consistency has earned this challenge.';
+  if (advanced >= 1) return `${advanced} advanced exercise${advanced > 1 ? 's' : ''} — the algorithm has detected real progression.`;
+  if (intermediate >= 3) return 'Intermediate session — steady progress across all muscle groups.';
+  return 'Foundation session — every rep contributes evidence to your skill model.';
+}
 
 export default function WorkoutPage({ workout, onComplete, onBack }) {
   const [logs, setLogs] = useState({});
@@ -65,6 +80,16 @@ export default function WorkoutPage({ workout, onComplete, onBack }) {
           YOUR <span className={styles.accent}>WORKOUT.</span>
         </h1>
 
+        <div className={styles.adaptiveBanner}>
+          <span className={styles.adaptiveTag}>
+            {workout.deload ? 'RECOVERY WEEK' : getTimeTag()}
+          </span>
+          {' — '}
+          {workout.deload
+            ? 'Volume is reduced to allow full adaptation from your recent sessions.'
+            : sessionMotivation(exercises)}
+        </div>
+
         <div className={styles.exerciseList}>
           {exercises.map((ex, i) => (
             <div key={ex.workoutExerciseId} className={styles.exerciseCard}>
@@ -89,6 +114,10 @@ export default function WorkoutPage({ workout, onComplete, onBack }) {
                   {ex.suggestedWeight != null ? ` @ ${ex.suggestedWeight}kg` : ''}
                 </span>
               </div>
+
+              {FORM_CUES[ex.difficulty] && (
+                <p className={styles.formCue}>{FORM_CUES[ex.difficulty]}</p>
+              )}
 
               <div className={styles.logRow}>
                 <div className={styles.logField}>

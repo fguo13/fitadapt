@@ -5,6 +5,7 @@ import styles from './ProfileEditPage.module.scss';
 const GOALS = ['Muscle Gain', 'Fat Loss', 'Endurance', 'General Fitness'];
 const GENDERS = ['Male', 'Female', 'Other'];
 const FITNESS_LEVELS = ['Beginner', 'Intermediate', 'Advanced'];
+const WORKOUT_STYLES = ['Strength', 'HIIT', 'Cardio', 'Flexibility', 'Mixed'];
 const EQUIPMENT_OPTIONS = [
   'Dumbbells', 'Barbell', 'Bodyweight', 'Kettlebell',
   'Resistance Bands', 'Pull-up Bar', 'Cable Machine', 'Bench',
@@ -16,6 +17,8 @@ const GENDER_MAP   = { Male: 'MALE', Female: 'FEMALE', Other: 'OTHER' };
 const GENDER_REV   = { MALE: 'Male', FEMALE: 'Female', OTHER: 'Other' };
 const LEVEL_MAP    = { Beginner: 'BEGINNER', Intermediate: 'INTERMEDIATE', Advanced: 'ADVANCED' };
 const LEVEL_REV    = { BEGINNER: 'Beginner', INTERMEDIATE: 'Intermediate', ADVANCED: 'Advanced' };
+const STYLE_MAP    = { Strength: 'STRENGTH', HIIT: 'HIIT', Cardio: 'CARDIO', Flexibility: 'FLEXIBILITY', Mixed: 'MIXED' };
+const STYLE_REV    = { STRENGTH: 'Strength', HIIT: 'HIIT', CARDIO: 'Cardio', FLEXIBILITY: 'Flexibility', MIXED: 'Mixed' };
 const EQUIP_MAP    = { Dumbbells: 'DUMBBELLS', Barbell: 'BARBELL', Bodyweight: 'BODYWEIGHT', Kettlebell: 'KETTLEBELL', 'Resistance Bands': 'RESISTANCE_BANDS', 'Pull-up Bar': 'PULL_UP_BAR', 'Cable Machine': 'CABLE_MACHINE', Bench: 'BENCH' };
 const EQUIP_REV    = Object.fromEntries(Object.entries(EQUIP_MAP).map(([k, v]) => [v, k]));
 
@@ -90,6 +93,7 @@ export default function ProfileEditPage({ onSave, onBack }) {
   const [gender, setGender] = useState('');
   const [goal, setGoal] = useState('');
   const [fitnessLevel, setFitnessLevel] = useState('Beginner');
+  const [workoutStyle, setWorkoutStyle] = useState('Mixed');
   const [equipment, setEquipment] = useState([]);
   const [injury, setInjury] = useState('');
 
@@ -101,7 +105,8 @@ export default function ProfileEditPage({ onSave, onBack }) {
         if (p.heightCm)      setHeight(String(p.heightCm));
         if (p.gender)        setGender(GENDER_REV[p.gender] ?? '');
         if (p.goal)          setGoal(GOAL_REV[p.goal] ?? '');
-        if (p.fitnessLevel)  setFitnessLevel(LEVEL_REV[p.fitnessLevel] ?? 'Beginner');
+        if (p.fitnessLevel)   setFitnessLevel(LEVEL_REV[p.fitnessLevel] ?? 'Beginner');
+        if (p.workoutStyle)   setWorkoutStyle(STYLE_REV[p.workoutStyle] ?? 'Mixed');
         if (p.availableEquipment) setEquipment(p.availableEquipment.map((e) => EQUIP_REV[e]).filter(Boolean));
         if (p.injuryHistory) setInjury(p.injuryHistory);
       })
@@ -126,6 +131,7 @@ export default function ProfileEditPage({ onSave, onBack }) {
         gender: GENDER_MAP[gender] ?? 'OTHER',
         goal: GOAL_MAP[goal] ?? 'GENERAL_FITNESS',
         fitnessLevel: LEVEL_MAP[fitnessLevel] ?? 'BEGINNER',
+        workoutStyle: STYLE_MAP[workoutStyle] ?? 'MIXED',
         availableEquipment: equipment.map((e) => EQUIP_MAP[e]).filter(Boolean),
         injuryHistory: injury || undefined,
       });
@@ -194,7 +200,13 @@ export default function ProfileEditPage({ onSave, onBack }) {
             <span className={styles.sectionSub}>Changing your goal shifts the algorithm's focus immediately.</span>
           </div>
           <SelectRow label="GOAL" options={GOALS} selected={goal} onSelect={setGoal} />
+          <SelectRow label="WORKOUT STYLE" options={WORKOUT_STYLES} selected={workoutStyle} onSelect={setWorkoutStyle} />
           <SelectRow label="FITNESS LEVEL" options={FITNESS_LEVELS} selected={fitnessLevel} onSelect={setFitnessLevel} />
+          <p className={styles.scrutabilityNote}>
+            FITNESS LEVEL seeds your adaptive skill model on first save. It sets the starting
+            probability that the algorithm assigns to each muscle group. You can adjust it at any
+            time — the model will update from your next session onwards.
+          </p>
         </section>
 
         <div className={styles.divider} />

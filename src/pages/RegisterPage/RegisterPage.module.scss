@@ -70,6 +70,17 @@
   }
 }
 
+.dataNotice {
+  font-size: $font-size-xs;
+  color: $color-muted;
+  line-height: 1.6;
+  text-align: center;
+  padding: $space-sm $space-md;
+  border: $border;
+  border-radius: $border-radius;
+  margin-top: $space-lg;
+}
+
 .footer {
   font-size: $font-size-sm;
   color: $color-muted;

@@ -170,6 +170,45 @@
   }
 }
 
+// ─── INSIGHT CARD (post-submit view) ─────────────────────────────────────────
+.insightCard {
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+  padding: $space-lg $space-xl;
+  background-color: $color-surface;
+  border: $border;
+  border-left: 3px solid $color-accent;
+  border-radius: $border-radius;
+  margin-bottom: $space-xl;
+}
+
+.insightLabel {
+  @include label-text;
+  color: $color-accent;
+}
+
+.insightText {
+  font-size: $font-size-base;
+  color: $color-white;
+  line-height: 1.7;
+}
+
+.insightMeta {
+  font-size: $font-size-sm;
+  color: $color-muted;
+  line-height: 1.6;
+}
+
+.timeNote {
+  font-size: $font-size-xs;
+  color: $color-muted;
+  line-height: 1.6;
+  padding: $space-xs $space-sm;
+  border-left: 2px solid $color-accent-dim;
+  margin-top: $space-sm;
+}
+
 // ─── ANIMATIONS ──────────────────────────────────────────────────────────────
 @keyframes pulse {
   0%   { opacity: 1; transform: scale(1); }

@@ -73,6 +73,26 @@
   color: $color-accent;
 }
 
+// ─── ADAPTIVE BANNER ─────────────────────────────────────────────────────────
+.adaptiveBanner {
+  font-size: $font-size-xs;
+  letter-spacing: $letter-spacing-wider;
+  color: $color-muted;
+  font-family: $font-mono;
+  padding: $space-sm $space-md;
+  background-color: $color-surface;
+  border: $border;
+  border-left: 3px solid $color-accent;
+  border-radius: $border-radius;
+  margin-bottom: $space-xl;
+  line-height: 1.5;
+}
+
+.adaptiveTag {
+  color: $color-accent;
+  font-weight: 700;
+}
+
 // ─── EXERCISE LIST ────────────────────────────────────────────────────────────
 .exerciseList {
   @include flex-column;
@@ -142,6 +162,18 @@
   color: $color-accent;
   letter-spacing: $letter-spacing-wide;
   font-weight: 700;
+}
+
+// ─── FORM CUE ────────────────────────────────────────────────────────────────
+.formCue {
+  font-size: $font-size-xs;
+  letter-spacing: $letter-spacing-wide;
+  color: $color-accent-dim;
+  font-family: $font-mono;
+  padding: $space-xs $space-sm;
+  border-left: 2px solid $color-accent-dim;
+  margin-bottom: $space-md;
+  line-height: 1.5;
 }
 
 // ─── LOG INPUTS ──────────────────────────────────────────────────────────────

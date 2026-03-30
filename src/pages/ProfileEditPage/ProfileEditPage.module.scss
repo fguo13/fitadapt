@@ -80,6 +80,15 @@
   line-height: 1.5;
 }
 
+.scrutabilityNote {
+  font-size: $font-size-xs;
+  color: $color-muted;
+  line-height: 1.6;
+  padding: $space-sm $space-md;
+  border-left: 2px solid $color-accent;
+  margin-top: $space-xs;
+}
+
 .divider {
   height: 1px;
   background-color: $color-border;

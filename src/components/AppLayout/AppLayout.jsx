@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Logo } from '../index';
 import TopBar from '../TopBar';
-import { useTheme } from '../../contexts/ThemeContext';
 import { api } from '../../services/api';
 import styles from './AppLayout.module.scss';
 
@@ -39,9 +38,9 @@ function PersonIcon() {
 
 function GearIcon({ size = 14 }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <circle cx="7" cy="7" r="2" />
-      <path d="M7 1v1.5M7 11.5V13M1 7h1.5M11.5 7H13M2.93 2.93l1.06 1.06M10.01 10.01l1.06 1.06M2.93 11.07l1.06-1.06M10.01 3.99l1.06-1.06" />
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="3" />
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
     </svg>
   );
 }
@@ -100,9 +99,17 @@ function HelpOverlay({ onClose }) {
 }
 
 export default function AppLayout({ page, onNavigate, children }) {
-  const { theme, toggleTheme } = useTheme();
   const [recentWorkouts, setRecentWorkouts] = useState([]);
   const [helpOpen, setHelpOpen] = useState(false);
+
+  // Skill-based UI level — written to localStorage by DashboardPage after
+  // fetching /api/users/me/skills. Defaults to BEGINNER until that runs.
+  const [uiLevel, setUILevel] = useState(
+    () => localStorage.getItem('fitadapt_ui_level') ?? 'BEGINNER'
+  );
+  useEffect(() => {
+    setUILevel(localStorage.getItem('fitadapt_ui_level') ?? 'BEGINNER');
+  }, [page]);
 
   useEffect(() => {
     api.workouts.list(0, 3)
@@ -134,8 +141,19 @@ export default function AppLayout({ page, onNavigate, children }) {
             ))}
           </nav>
 
+          {/* Beginner onboarding tip — shown only while the user is at BEGINNER level */}
+          {uiLevel === 'BEGINNER' && (
+            <div className={styles.beginnerTip}>
+              <span className={styles.beginnerTipLabel}>GETTING STARTED</span>
+              <p className={styles.beginnerTipText}>
+                Generate a workout, train, then rate your session. The algorithm learns from
+                each session and adapts difficulty automatically.
+              </p>
+            </div>
+          )}
+
           {/* Recent workouts */}
-          {recentWorkouts.length > 0 && (
+          {uiLevel !== 'BEGINNER' && recentWorkouts.length > 0 && (
             <div className={styles.recentSection}>
               <span className={styles.recentLabel}>RECENT</span>
               <div className={styles.recentList}>
@@ -155,24 +173,7 @@ export default function AppLayout({ page, onNavigate, children }) {
         </div>
 
         <div className={styles.sidebarBottom}>
-          <button
-            className={styles.themeToggle}
-            onClick={toggleTheme}
-            title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-            type="button"
-          >
-            <span className={styles.themeIcon}>{theme === 'dark' ? '◑' : '◐'}</span>
-            {theme === 'dark' ? 'Light mode' : 'Dark mode'}
-          </button>
           <div className={styles.bottomIcons}>
-            <button
-              className={styles.iconBtn}
-              onClick={() => onNavigate('settings')}
-              title="Settings"
-              type="button"
-            >
-              <GearIcon size={15} />
-            </button>
             <button
               className={styles.iconBtn}
               onClick={() => setHelpOpen(true)}

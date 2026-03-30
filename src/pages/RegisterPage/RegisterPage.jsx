@@ -69,6 +69,12 @@ export default function RegisterPage({ onRegister, onBack, error }) {
           {loading ? 'CREATING...' : 'CREATE ACCOUNT →'}
         </button>
 
+        <p className={styles.dataNotice}>
+          FitAdapt personalises your workouts using your training history and feedback.
+          This data is stored securely and never shared with third parties.
+          You can view, edit, or delete your profile at any time from Settings.
+        </p>
+
         <p className={styles.footer}>
           Already a member?{' '}
           <span className={styles.link} onClick={onBack}>

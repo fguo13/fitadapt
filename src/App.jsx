@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from './contexts/AuthContext';
 import { api } from './services/api';
+import { trackPageVisit } from './hooks/useBehavior';
 import { AppLayout } from './components';
 import {
   LoginPage, ProfilePage,
@@ -15,6 +16,9 @@ const GOAL_MAP = {
   'General Fitness': 'GENERAL_FITNESS',
 };
 const GENDER_MAP = { Male: 'MALE', Female: 'FEMALE', Other: 'OTHER' };
+const STYLE_MAP = {
+  Strength: 'STRENGTH', HIIT: 'HIIT', Cardio: 'CARDIO', Flexibility: 'FLEXIBILITY', Mixed: 'MIXED',
+};
 const EQUIPMENT_MAP = {
   Dumbbells:          'DUMBBELLS',
   Bodyweight:         'BODYWEIGHT',
@@ -32,8 +36,9 @@ export default function App() {
   const { isAuthenticated, signIn } = useAuth();
   const [page, setPage] = useState(isAuthenticated ? 'dashboard' : 'login');
   const [activeWorkout, setActiveWorkout] = useState(null);
+  const [coachingInsight, setCoachingInsight] = useState(null);
 
-  const navigate = (p) => setPage(p);
+  const navigate = (p) => { trackPageVisit(p); setPage(p); };
 
   // ─── Auth handlers ──────────────────────────────────────────────────────
   const handleLogin = async (email, password) => {
@@ -54,7 +59,7 @@ export default function App() {
     }
   };
 
-  const handleOnboarding = async ({ age, weight, height, gender, goal, equipment, injury }) => {
+  const handleOnboarding = async ({ age, weight, height, gender, goal, equipment, injury, workoutStyle }) => {
     try {
       await api.users.onboarding({
         age: parseInt(age, 10),
@@ -65,6 +70,7 @@ export default function App() {
         availableEquipment: equipment.map((e) => EQUIPMENT_MAP[e]).filter(Boolean),
         injuryHistory: injury || undefined,
         fitnessLevel: 'BEGINNER',
+        workoutStyle: STYLE_MAP[workoutStyle] ?? 'MIXED',
       });
       navigate('dashboard');
     } catch (e) {
@@ -89,12 +95,18 @@ export default function App() {
 
   const handleFeedbackSubmit = async (feedbackData) => {
     try {
-      await api.workouts.feedback(activeWorkout.id, feedbackData);
-      setActiveWorkout(null);
-      navigate('dashboard');
+      const result = await api.workouts.feedback(activeWorkout.id, feedbackData);
+      setCoachingInsight(result?.coachingInsight ?? null);
+      // Don't navigate — FeedbackPage will show the insight card first
     } catch (e) {
       alert(`Could not save feedback: ${e.message}`);
     }
+  };
+
+  const handleFeedbackExit = () => {
+    setCoachingInsight(null);
+    setActiveWorkout(null);
+    navigate('dashboard');
   };
 
   // ─── Unauthenticated ────────────────────────────────────────────────────
@@ -130,7 +142,8 @@ export default function App() {
     return (
       <FeedbackPage
         onSubmit={handleFeedbackSubmit}
-        onSkip={() => { setActiveWorkout(null); navigate('dashboard'); }}
+        onSkip={handleFeedbackExit}
+        insight={coachingInsight}
       />
     );
   }

@@ -29,7 +29,7 @@ export default function Logo() {
       <span className={styles.icon}>
         <DumbbellIcon />
       </span>
-      FIT<span className={styles.accent}>ADAPT</span>
+      <span>FIT<span className={styles.accent}>ADAPT</span></span>
     </div>
   );
 }

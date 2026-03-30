@@ -141,36 +141,50 @@ export default function ProfileViewPage({ onEdit }) {
         )}
       </div>
 
-      {/* Skills */}
-      {skills.length > 0 && (
-        <div className={styles.skillsSection}>
-          <span className={styles.sectionLabel}>SKILL STATES</span>
-          <div className={styles.skillsGrid}>
-            {skills.map((s) => (
-              <div key={`${s.muscleGroup}-${s.difficultyLevel}`} className={styles.skillCard}>
-                <div className={styles.skillHeader}>
-                  <span className={styles.skillMuscle}>
-                    {MUSCLE_LABEL[s.muscleGroup] || s.muscleGroup}
-                  </span>
-                  <span className={styles.skillLevel}>{s.difficultyLevel}</span>
+      {/* Skills — one row per muscle group */}
+      {skills.length > 0 && (() => {
+        // Group by muscle, derive active tier + progress
+        const byGroup = {};
+        for (const s of skills) {
+          if (!byGroup[s.muscleGroup]) byGroup[s.muscleGroup] = {};
+          byGroup[s.muscleGroup][s.difficultyLevel] = s;
+        }
+        const rows = Object.entries(byGroup).map(([mg, levels]) => {
+          const pBeg = levels.BEGINNER?.pLearned     ?? 0.10;
+          const pInt = levels.INTERMEDIATE?.pLearned ?? 0.05;
+          let tier, progress;
+          if (pInt >= 0.85) {
+            tier = 'ADVANCED';
+            progress = Math.min(100, Math.round(((levels.ADVANCED?.pLearned ?? 0.01) / 0.85) * 100));
+          } else if (pBeg >= 0.85) {
+            tier = 'INTERMEDIATE';
+            progress = Math.min(100, Math.round((pInt / 0.85) * 100));
+          } else {
+            tier = 'BEGINNER';
+            progress = Math.min(100, Math.round((pBeg / 0.85) * 100));
+          }
+          return { mg, tier, progress };
+        });
+        return (
+          <div className={styles.skillsSection}>
+            <span className={styles.sectionLabel}>SKILL MODEL</span>
+            <div className={styles.skillsList}>
+              {rows.map(({ mg, tier, progress }) => (
+                <div key={mg} className={styles.skillRow}>
+                  <span className={styles.skillMuscle}>{MUSCLE_LABEL[mg] || mg}</span>
+                  <div className={styles.skillBar}>
+                    <div
+                      className={`${styles.skillFill} ${styles[`fill${tier}`]}`}
+                      style={{ width: `${progress}%` }}
+                    />
+                  </div>
+                  <span className={styles.skillPct}>{progress}%</span>
                 </div>
-                <div className={styles.skillBar}>
-                  <div
-                    className={styles.skillFill}
-                    style={{ width: `${s.masteryPercent}%` }}
-                  />
-                </div>
-                <div className={styles.skillFooter}>
-                  <span className={`${styles.skillStatus} ${styles[`status${s.status}`]}`}>
-                    {s.status}
-                  </span>
-                  <span className={styles.skillPct}>{s.masteryPercent}%</span>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        );
+      })()}
     </div>
   );
 }
